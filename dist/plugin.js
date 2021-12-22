@@ -140,9 +140,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"bpRK8":[function(require,module,exports) {
+})({"3oDAX":[function(require,module,exports) {
 var HMR_HOST = null;
-var HMR_PORT = 57377;
+var HMR_PORT = 60462;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
 module.bundle.HMR_BUNDLE_ID = "655cd3a10a2ee9a6";
@@ -599,9 +599,13 @@ _alpinejsDefault.default.data('orwbMailer', ()=>{
                 credentials: 'same-origin',
                 body: data
             });
+            console.log(response);
             const responseData = await response.json();
             if (responseData.success) alert('Email sent successfully.');
-            else alert('There was an error sending the email.');
+            else {
+                console.log(responseData);
+                alert('There was an error sending the email.');
+            }
         },
         async init () {
             await this.checkAPIKey();
@@ -9590,6 +9594,6 @@ process.umask = function() {
     return 0;
 };
 
-},{}]},["bpRK8","2nSgx"], "2nSgx", "parcelRequired56b")
+},{}]},["3oDAX","2nSgx"], "2nSgx", "parcelRequired56b")
 
 //# sourceMappingURL=plugin.js.map

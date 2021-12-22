@@ -131,10 +131,12 @@ Alpine.data('orwbMailer', () => {
         credentials: 'same-origin',
         body: data,
       });
+      console.log(response);
       const responseData = await response.json();
       if (responseData.success) {
         alert('Email sent successfully.');
       } else {
+        console.log(responseData);
         alert('There was an error sending the email.');
       }
     },
