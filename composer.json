@@ -1,0 +1,18 @@
+{
+    "name": "thinkshout/orwb-bulk-emailer",
+    "description": "A bulk emailer built by ThinkShout for The Oregon Wine Board.",
+    "type": "wordpress-plugin",
+    "require": {
+        "mailgun/mailgun-php": "^3.5",
+        "symfony/http-client": "^5.4",
+        "nyholm/psr7": "^1.4",
+        "composer/installers": "~1.0"
+    },
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "ThinkShout",
+            "email": "dev+orwb@thinkshout.com"
+        }
+    ]
+}

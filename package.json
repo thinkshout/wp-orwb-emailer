@@ -1,0 +1,24 @@
+{
+  "name": "orwb-bulk-emailer",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npm run theme.bundle",
+    "start": "npm run theme.watch",
+    "theme.bundle": "NODE_ENV=production parcel build ./assets/plugin.js --dist-dir ./dist --public-url ./dist",
+    "theme.watch": "NODE_ENV=development parcel watch ./assets/plugin.js --dist-dir ./dist --public-url ./dist"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "parcel": "^2.0.1",
+    "postcss": "^8.4.4",
+    "tailwindcss": "^2.2.19"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.7.0",
+    "medium-editor": "^5.23.3"
+  }
+}
