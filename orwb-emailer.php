@@ -169,7 +169,7 @@ class ORWB_Bulk_Emailer {
       $response = $emailer->messages()->send( $domain, $params );
       wp_send_json_success( $response );
     } catch (\Throwable $th) {
-      wp_send_json_error( [$th->getmessage(), $response] );
+      wp_send_json_error( $th->getmessage() );
     }
     wp_die();
   }
