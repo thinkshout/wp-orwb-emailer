@@ -1,6 +1,6 @@
 module.exports = {
   JIT: true,
-  purge: ['./index.html'],
+  purge: ['./orwb-emailer-dashboard.php'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
