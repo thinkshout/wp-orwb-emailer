@@ -71,6 +71,7 @@ Alpine.data('orwbMailer', () => {
         body: data
       });
       const responseData = await response.json();
+      console.log(responseData);
       this.hasAPIKey = responseData.success;
     },
     async removeAPICreds() {
