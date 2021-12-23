@@ -181,11 +181,13 @@ class ORWB_Bulk_Emailer {
       'from' => "Oregon Wine Board <site-admin@$domain>",
       'to' => $recipients,
       'subject' => $subject,
-      'text' => $message,
+      'html' => "<html>$message</html>",
     ];
     try {
-      $response = $emailer->messages()->send( $domain, $params );      
-      wp_send_json_success( [$response->getBody(), $response->getMessage()] );
+      $response = $emailer->messages()->send( $domain, $params );
+      $response_body = $response->getBody();
+      $response_body_json = json_decode( $response_body );
+      wp_send_json_success( $response_body_json );
     } catch (\Throwable $th) {
       wp_send_json_error( $th->getmessage() );
     }
