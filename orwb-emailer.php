@@ -165,6 +165,8 @@ class ORWB_Bulk_Emailer {
       'subject' => $subject,
       'text' => $message,
     ];
+    wp_send_json_success( [ $api_key, $domain, $params ] );
+    wp_die();
     try {
       $response = $emailer->messages()->send( $domain, $params );
       wp_send_json_success( $response );

@@ -132,6 +132,7 @@ Alpine.data('orwbMailer', () => {
         body: data,
       });
       const responseData = await response.json();
+      console.log(responseData);
       if (responseData.success) {
         alert('Email sent successfully.');
       } else {
