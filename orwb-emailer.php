@@ -74,7 +74,7 @@ class ORWB_Bulk_Emailer {
     }
 
     $api_key = sanitize_text_field( wp_unslash( $_POST['api_key'] ) );
-    $api_domain = esc_url_raw( wp_unslash( $_POST['api_domain'] ) );
+    $api_domain = str_replace( 'http://', '', esc_url_raw( wp_unslash( $_POST['api_domain'] ) ) );
     if ( ! $api_key ) {
       wp_send_json_error( 'Please enter an API key.' );
       wp_die();
