@@ -163,12 +163,17 @@ class ORWB_Bulk_Emailer {
       wp_send_json_error( 'Please enter an API key.' );
       wp_die();
     }
+    $api_domain = get_option( 'orwb_mailgun_api_domain' );
+    if ( ! $api_domain ) {
+      wp_send_json_error( 'Please enter an API domain.' );
+      wp_die();
+    }
     $allowed_tags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><li><ol><ul><span><div><br><ins><del>';
     $subject = sanitize_text_field( wp_unslash( $_POST['subject'] ) );
     $message = strip_tags( wp_unslash( $_POST['message'] ), $allowed_tags );
     $users = json_decode( wp_unslash( $_POST['selectedUsers'] ), true );
     $emailer = Mailgun::create( $api_key );
-    $domain = 'oregonwine.org';
+    $domain = $api_domain;
     $recipients = array_map( function( $user ) {
       return $user['email'];
     }, $users );
