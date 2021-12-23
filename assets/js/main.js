@@ -104,8 +104,8 @@ Alpine.data('orwbMailer', () => {
       const responseData = await response.json();
       if (responseData.success) {
         this.hasAPICreds = true;
-        this.messageEditor = new mediumEditor(document.getElementById('orwb-mailer-message'));
         await this.getEligibleUsers();
+        this.messageEditor = new mediumEditor(document.getElementById('orwb-mailer-message'));
       }
     },
     async sendEmail() {
@@ -143,7 +143,7 @@ Alpine.data('orwbMailer', () => {
     },
     async init() {
       await this.checkAPIKey();
-      if ( ! this.hasAPIKey ) return;
+      if ( ! this.hasAPICreds ) return;
       this.messageEditor = new mediumEditor(document.getElementById('orwb-mailer-message'));
       await this.getEligibleUsers();
     }

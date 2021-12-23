@@ -19,12 +19,12 @@
       <h3 class="text-2xl font-bold text-gray-800 mb-4">Mailgun Api Key</h3>
       <template x-if="!hasAPICreds">
         <div class="flex flex-row flex-wrap">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="col-span-1">
+          <div class="grid grid-cols-2 w-full">
+            <div class="col-span-1 pr-2">
               <label class="text-base text-gray-800 mb-1">Mailgun API Key</label>
               <input type="text" class="w-full p-2 border-2 border-gray-400 mb-2" placeholder="API Key" x-model="apiKey"/>
             </div>
-            <div class="col-span-1">
+            <div class="col-span-1 pl-2">
               <label class="text-base text-gray-800 mb-1">Mailgun API Domain</label>
               <input type="text" class="w-full p-2 border-2 border-gray-400 mb-2" placeholder="API Domain" x-model="apiDomain"/>
             </div>
@@ -41,12 +41,12 @@
       </template>
       <template x-if="hasAPICreds">
         <div class="flex flex-row flex-wrap">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="col-span-1">
+          <div class="grid grid-cols-2 gap-4 w-full">
+            <div class="col-span-1 pr-2">
               <label class="text-base text-gray-800 mb-1">Mailgun API Key</label>
               <input type="password" class="w-full p-2 border-2 border-gray-400 mb-2" value="***********" placeholder="API Key" readonly/>
             </div>
-            <div class="col-span-1">
+            <div class="col-span-1 pl-2">
               <label class="text-base text-gray-800 mb-1">Mailgun API Domain</label>
               <input type="password" class="w-full p-2 border-2 border-gray-400 mb-2" value="***********" placeholder="API Domain" readonly/>
             </div>
