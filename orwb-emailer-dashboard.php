@@ -4,7 +4,7 @@
       <?php _e( 'Wine Board Bulk Emailer', 'orwb-bulk-emailer' ); ?>
     </h2>
     <p><?php _e( "An emailer that allows Oregon Wine Board admins to send bulk reminder emails to to users with Listing posts that haven't been updated in the last 6 months.", 'orwb-bulk-emailer'); ?></p>
-    <template x-if="hasAPIKey">
+    <template x-if="hasAPICreds">
       <section class="py-4">
         <h3 class="text-2xl font-bold text-gray-800 mb-4">Message</h3>
         <form>
@@ -17,30 +17,52 @@
     </template>
     <section class="py-4">
       <h3 class="text-2xl font-bold text-gray-800 mb-4">Mailgun Api Key</h3>
-      <template x-if="!hasAPIKey">
+      <template x-if="!hasAPICreds">
         <div class="flex flex-row flex-wrap">
-          <input type="text" class="w-full p-2 border-2 border-gray-400 mb-2" placeholder="API Key" x-model="apiKey"/>
-          <button 
-            class="p-2 text-white rounded cursor-pointer shadow hover:shadow-lg bg-blue-500 transition-all"
-            @click.prevent="setAPIKey"
-          >
-            Set API Key
-          </button>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1">
+              <label class="text-base text-gray-800 mb-1">Mailgun API Key</label>
+              <input type="text" class="w-full p-2 border-2 border-gray-400 mb-2" placeholder="API Key" x-model="apiKey"/>
+            </div>
+            <div class="col-span-1">
+              <label class="text-base text-gray-800 mb-1">Mailgun API Domain</label>
+              <input type="text" class="w-full p-2 border-2 border-gray-400 mb-2" placeholder="API Domain" x-model="apiDomain"/>
+            </div>
+            <div class="col-span-2">
+              <button 
+                class="p-2 text-white rounded cursor-pointer shadow hover:shadow-lg bg-blue-500 transition-all"
+                @click.prevent="setAPICreds"
+              >
+                Set API Credentials
+              </button>
+            </div>
+          </div>
         </div>
       </template>
-      <template x-if="hasAPIKey">
+      <template x-if="hasAPICreds">
         <div class="flex flex-row flex-wrap">
-          <input type="password" class="w-full p-2 border-2 border-gray-400 mb-2 cursor-not-allowed" readonly value="mailgunapikey" />
-          <button 
-            class="p-2 text-white rounded cursor-pointer shadow hover:shadow-lg bg-red-500 transition-all"
-            @click.prevent="removeAPIkey"
-          >
-            Remove API Key
-          </button>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1">
+              <label class="text-base text-gray-800 mb-1">Mailgun API Key</label>
+              <input type="password" class="w-full p-2 border-2 border-gray-400 mb-2" value="***********" placeholder="API Key" readonly/>
+            </div>
+            <div class="col-span-1">
+              <label class="text-base text-gray-800 mb-1">Mailgun API Domain</label>
+              <input type="password" class="w-full p-2 border-2 border-gray-400 mb-2" value="***********" placeholder="API Domain" readonly/>
+            </div>
+            <div class="col-span-2">
+              <button 
+                class="p-2 text-white rounded cursor-pointer shadow hover:shadow-lg bg-red-500 transition-all"
+                @click.prevent="removeAPICreds"
+              >
+                Remove API Credentials
+              </button>
+            </div>
+          </div>
         </div>
       </template>
     </section>
-    <template x-if="hasAPIKey">
+    <template x-if="hasAPICreds">
       <section class="pt-4">
         <h3 class="text-2xl font-bold text-gray-800 mb-4">Recipients</h3>
         <p class="text-gray-600 font-medium mb-2">
@@ -116,7 +138,7 @@
     </template>
   </div>
   <footer>
-    <template x-if="hasAPIKey">
+    <template x-if="hasAPICreds">
       <button
         class="w-full p-2 text-white rounded-b transition-all"
         :class="hasSelectedUsers() ? 'bg-blue-500 cursor-pointer shadow hover:shadow-lg' : 'cursor-not-allowed bg-gray-500'"

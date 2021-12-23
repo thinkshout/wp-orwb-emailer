@@ -46,15 +46,21 @@ class ORWB_Bulk_Emailer {
 
   public function orwb_mailer_settings_init() {
     add_option( 'orwb_mailgun_api_key' );
+    add_option( 'orwb_mailgun_api_domain' );
   }
 
   public function orwb_mailer_check_api_key() {
     $key = get_option( 'orwb_mailgun_api_key' );
+    $domain = get_option( 'orwb_mailgun_api_domain' );
     if ( ! $key ) {
       wp_send_json_error( 'No API key found.' );
       wp_die();
     }
-    wp_send_json_success( 'API key found.' );
+    if ( ! $domain ) {
+      wp_send_json_error( 'No API domain found.' );
+      wp_die();
+    }
+    wp_send_json_success( 'API key & domain found.' );
   } 
 
   public function orwb_mailer_set_api_key() {
@@ -68,12 +74,18 @@ class ORWB_Bulk_Emailer {
     }
 
     $api_key = sanitize_text_field( wp_unslash( $_POST['api_key'] ) );
+    $api_domain = esc_url_raw( wp_unslash( $_POST['api_domain'] ) );
     if ( ! $api_key ) {
       wp_send_json_error( 'Please enter an API key.' );
       wp_die();
     }
+    if ( ! $api_domain ) {
+      wp_send_json_error( 'Please enter an API domain.' );
+      wp_die();
+    }
     update_option( 'orwb_mailgun_api_key', $api_key );
-    wp_send_json_success( 'API key saved.' );
+    update_option( 'orwb_mailgun_api_domain', $api_domain );
+    wp_send_json_success( 'API creds saved.' );
     wp_die();
   }
 
@@ -87,7 +99,8 @@ class ORWB_Bulk_Emailer {
       wp_die();
     }
     update_option( 'orwb_mailgun_api_key', false );
-    wp_send_json_success( 'API key removed.' );
+    update_option( 'orwb_mailgun_api_domain', false );
+    wp_send_json_success( 'API creds removed.' );
     wp_die();
   }
 

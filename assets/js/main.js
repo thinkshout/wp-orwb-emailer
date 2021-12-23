@@ -6,9 +6,10 @@ Alpine.data('orwbMailer', () => {
     subject: '',
     messageEditor: null,
     apiKey: '',
+    apiDomain: '',
     eligibleUsers: [],
     selectedUsers: [],
-    hasAPIKey: false,
+    hasAPICreds: false,
     hasEligibleUsers() {
       return this.eligibleUsers.length > 0;
     },
@@ -72,7 +73,7 @@ Alpine.data('orwbMailer', () => {
       const responseData = await response.json();
       this.hasAPIKey = responseData.success;
     },
-    async removeAPIkey() {
+    async removeAPICreds() {
       const { ajaxUrl, ajaxSecurity } = orwb_mailer_ajax;
       const data = new FormData();
       data.append('action', 'orwb_mailer_remove_api_key');
@@ -87,12 +88,13 @@ Alpine.data('orwbMailer', () => {
         this.hasAPIKey = false;
       }
     },
-    async setAPIKey() {
+    async setAPICreds() {
       const { ajaxUrl, ajaxSecurity } = orwb_mailer_ajax;
       const data = new FormData();
       data.append('action', 'orwb_mailer_set_api_key');
       data.append('security', ajaxSecurity);
       data.append('api_key', this.apiKey);
+      data.append('api_domain', this.apiDomain);
       const response = await fetch(ajaxUrl, {
         method: 'POST',
         credentials: 'same-origin',
@@ -101,7 +103,7 @@ Alpine.data('orwbMailer', () => {
       );
       const responseData = await response.json();
       if (responseData.success) {
-        this.hasAPIKey = true;
+        this.hasAPICreds = true;
         this.messageEditor = new mediumEditor(document.getElementById('orwb-mailer-message'));
         await this.getEligibleUsers();
       }
